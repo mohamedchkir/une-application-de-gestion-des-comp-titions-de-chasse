@@ -1,7 +1,7 @@
-package com.example.aftas.core.dao.model.dto;
+package com.example.aftas.core.dao.model.dto.Store;
 
 
-import com.example.aftas.shared.Const.IdentityDocument;
+import com.example.aftas.shared.Enum.IdentityDocument;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

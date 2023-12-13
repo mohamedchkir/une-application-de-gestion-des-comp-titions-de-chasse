@@ -1,4 +1,4 @@
-package com.example.aftas.core.dao.model.dto;
+package com.example.aftas.core.dao.model.dto.Store;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

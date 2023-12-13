@@ -1,7 +1,7 @@
 package com.example.aftas.core.dao.model.entity;
 
 
-import com.example.aftas.shared.Const.IdentityDocument;
+import com.example.aftas.shared.Enum.IdentityDocument;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

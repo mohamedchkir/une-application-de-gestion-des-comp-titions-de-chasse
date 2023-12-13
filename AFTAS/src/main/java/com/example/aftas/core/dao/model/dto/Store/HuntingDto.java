@@ -1,4 +1,4 @@
-package com.example.aftas.core.dao.model.dto;
+package com.example.aftas.core.dao.model.dto.Store;
 
 import com.example.aftas.core.dao.model.entity.Competition;
 import com.example.aftas.core.dao.model.entity.Member;
