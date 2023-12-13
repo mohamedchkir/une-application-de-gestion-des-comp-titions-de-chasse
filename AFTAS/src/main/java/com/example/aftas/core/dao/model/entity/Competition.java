@@ -1,5 +1,6 @@
 package com.example.aftas.core.dao.model.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -22,7 +23,9 @@ public class Competition {
     @Id
     private String code;
     private LocalDate date;
+    @Column(name = "start_time")
     private LocalTime startTime;
+    @Column(name = "end_time")
     private LocalTime endTime;
     private String location;
     private Double amount;

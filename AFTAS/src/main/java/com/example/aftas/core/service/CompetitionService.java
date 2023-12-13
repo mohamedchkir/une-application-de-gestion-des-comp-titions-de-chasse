@@ -1,11 +1,12 @@
 package com.example.aftas.core.service;
 
+import com.example.aftas.core.dao.model.dto.Store.CompetitionDto;
 import com.example.aftas.core.dao.model.entity.Competition;
 
 import java.util.List;
 
 public interface CompetitionService {
-    Competition addCompetition(Competition competition);
+    CompetitionDto addCompetition(CompetitionDto competitionDto);
 
     List<Competition> getAllCompetitions();
 
