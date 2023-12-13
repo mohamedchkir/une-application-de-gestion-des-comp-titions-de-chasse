@@ -1,5 +1,4 @@
-package com.example.aftas.core.dao.model.dto.Store;
-
+package com.example.aftas.core.dao.model.dto.update;
 
 import com.example.aftas.shared.Enum.IdentityDocument;
 import jakarta.validation.constraints.NotBlank;
@@ -9,10 +8,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Getter
 @Setter
-public class MemberDto implements Serializable {
+public class UpdateMemberDto implements Serializable {
     @NotNull(message = "num cannot be null.")
     @Positive(message = "num cannot be negative.")
     private Integer num;
@@ -24,6 +24,8 @@ public class MemberDto implements Serializable {
     @NotNull(message = "family name cannot be null.")
     @NotBlank(message = "family name cannot be blank.")
     private String familyName;
+
+    private LocalDate accessionDate;
 
     @NotNull(message = "nationality cannot be null.")
     @NotBlank(message = "nationality cannot be blank.")
