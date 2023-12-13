@@ -2,7 +2,9 @@ package com.example.aftas.common.helper.Validation.Compitition;
 
 import com.example.aftas.core.dao.model.dto.Store.CompetitionDto;
 import com.example.aftas.core.dao.model.entity.Competition;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -19,14 +21,14 @@ public class CompetitionValidation {
     private void validateDuration(LocalTime startTime, LocalTime endTime) {
         Duration duration = Duration.between(startTime, endTime);
         if (duration.toHours() <= 2) {
-            throw new IllegalArgumentException("Competition duration must be greater than 2 hours");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Competition duration must be greater than 2 hours");
         }
     }
 
     private void validateExistingCompetition(LocalDate competitionDate, List<Competition> existingCompetitions) {
         for (Competition existingCompetition : existingCompetitions) {
             if (existingCompetition.getDate().isEqual(competitionDate)) {
-                throw new IllegalArgumentException("There is already a competition on the same day");
+                throw new ResponseStatusException(HttpStatus.FOUND,"There is already a competition on the same day");
             }
         }
     }
