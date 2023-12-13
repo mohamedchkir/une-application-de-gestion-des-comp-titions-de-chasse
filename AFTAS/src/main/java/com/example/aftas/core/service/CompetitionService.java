@@ -9,7 +9,5 @@ public interface CompetitionService {
 
     List<Competition> getAllCompetitions();
 
-    List<Competition> getOpenCompetitions();
-
     Competition getCompetitionByCode(String code);
 }
