@@ -40,6 +40,12 @@ public class CompetitionController {
         }
     }
 
+    @GetMapping
+    public ResponseEntity<List<GetCompetitionDto>> getAllCompetitionsWithStatus() {
+        List<GetCompetitionDto> competitionDtos = competitionService.getAllCompetitionsWithStatus();
+        return ResponseEntity.ok(competitionDtos);
+    }
+
 
 
 }
