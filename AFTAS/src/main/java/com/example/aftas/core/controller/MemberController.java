@@ -27,5 +27,21 @@ public class MemberController {
         return new ResponseEntity<>(addedMember, HttpStatus.CREATED);
     }
 
+    @GetMapping
+    public ResponseEntity<List<GetMemberDto>> getAllMembers() {
+        List<GetMemberDto> allMembers = memberService.getAllMembers();
+        return new ResponseEntity<>(allMembers, HttpStatus.OK);
+    }
+
+    @GetMapping("/{num}")
+    public ResponseEntity<GetMemberDto> getMemberByNum(@PathVariable Integer num) {
+        GetMemberDto member = memberService.getMemberByNum(num);
+        if (member != null) {
+            return new ResponseEntity<>(member, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 }

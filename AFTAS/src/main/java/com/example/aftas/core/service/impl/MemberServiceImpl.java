@@ -8,11 +8,14 @@ import com.example.aftas.core.service.MemberService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -36,14 +39,19 @@ public class MemberServiceImpl implements MemberService {
         return modelMapper.map(savedMember, MemberDto.class);
     }
 
-
     @Override
     public List<GetMemberDto> getAllMembers() {
-        return null;
+        List<Member> members = memberRepository.findAll();
+        return members.stream()
+                .map(member -> modelMapper.map(member, GetMemberDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
     public GetMemberDto getMemberByNum(Integer num) {
-        return null;
+        Optional<Member> optionalMember = memberRepository.findByNum(num);
+
+        return optionalMember.map(member -> modelMapper.map(member, GetMemberDto.class))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Member not found"));
     }
 }
