@@ -22,11 +22,14 @@ public class Member {
     @Id
     private Integer num;
     private String name;
+    @Column(name = "family_name")
     private String familyName;
+    @Column(name = "accession_date")
     private LocalDate accessionDate;
     private String nationality;
-    @Column(unique = true)
+    @Column(name = "identity_number", unique = true)
     private String identityNumber;
+    @Column(name = "identity_document")
     private IdentityDocument identityDocument;
 
     @OneToMany(mappedBy = "member")
