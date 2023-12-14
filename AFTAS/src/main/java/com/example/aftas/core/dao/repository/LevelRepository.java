@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface LevelRepository extends JpaRepository<Level, Integer> {
     Optional<Level> findTopByOrderByPointsDesc();
+
+    Optional<Level> findByCode(Integer code);
 }

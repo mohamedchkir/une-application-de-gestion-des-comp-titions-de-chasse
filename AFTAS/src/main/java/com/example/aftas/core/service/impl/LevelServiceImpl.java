@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -40,11 +41,23 @@ public class LevelServiceImpl implements LevelService {
 
     @Override
     public List<GetLevelDto> getAllLevels() {
-        return null;
+        List<Level> levels = levelRepository.findAll();
+
+        return levels.stream()
+                .map(level -> modelMapper.map(level, GetLevelDto.class))
+                .collect(Collectors.toList());
     }
+
 
     @Override
     public GetLevelDto getLevelByCode(Integer code) {
-        return null;
+        Optional<Level> optionalLevel = levelRepository.findByCode(code);
+
+        if (optionalLevel.isPresent()) {
+            return modelMapper.map(optionalLevel.get(), GetLevelDto.class);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "level with code " + code + " not found");
+        }
     }
+
 }
