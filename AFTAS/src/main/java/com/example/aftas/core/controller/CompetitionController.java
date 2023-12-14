@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 public class CompetitionController {
 
     private final CompetitionService competitionService;
-    private final ModelMapper modelMapper;
     private final CompetitionValidation competitionValidation;
     private final CompetitionRepository competitionRepository;
 
@@ -33,7 +32,6 @@ public class CompetitionController {
     @PostMapping
     public ResponseEntity<Object> addCompetition(@Valid @RequestBody CompetitionDto competitionDto) {
         try {
-            competitionValidation.validateCompetition(competitionDto, competitionRepository.findByDate(competitionDto.getDate()));
             CompetitionDto createdCompetition = competitionService.addCompetition(competitionDto);
             throw new ResponseStatusException(HttpStatus.CREATED, "Competition created successfully");
         } catch (ResponseStatusException e) {
