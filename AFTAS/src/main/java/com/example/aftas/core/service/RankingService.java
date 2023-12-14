@@ -1,10 +1,14 @@
 package com.example.aftas.core.service;
 
+import com.example.aftas.core.dao.model.dto.Get.GetRankingDto;
+import com.example.aftas.core.dao.model.dto.Store.RankingDto;
 import com.example.aftas.core.dao.model.entity.Ranking;
 import com.example.aftas.core.dao.model.entity.RankingKey;
 
-public interface RankingService {
-    Ranking addRanking(Ranking ranking);
+import java.util.List;
 
-    Ranking getRankingById(RankingKey id);
+public interface RankingService {
+    RankingDto RegisterMemberInCompetition(RankingDto rankingDto);
+
+    List<GetRankingDto> getAllRankings();
 }
