@@ -9,5 +9,6 @@ public class AppEndpoints {
 
     public static final  String COMPETITION_ENDPOINT = VERSION + "/competitions";
     public static final  String MEMBER_ENDPOINT = VERSION + "/members";
+    public static final  String LEVEL_ENDPOINT = VERSION + "/levels";
 
 }
