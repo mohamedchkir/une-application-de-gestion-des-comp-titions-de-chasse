@@ -4,6 +4,7 @@ package com.example.aftas.core.controller;
 import com.example.aftas.core.dao.model.dto.Get.GetMemberDto;
 import com.example.aftas.core.dao.model.dto.Store.MemberDto;
 import com.example.aftas.core.service.MemberService;
+import com.example.aftas.shared.Const.AppEndpoints;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 
-@RequestMapping("/members")
+@RequestMapping(AppEndpoints.MEMBER_ENDPOINT)
 public class MemberController {
 
     private final MemberService memberService;

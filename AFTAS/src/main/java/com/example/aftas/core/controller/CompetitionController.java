@@ -6,6 +6,7 @@ import com.example.aftas.core.dao.model.dto.Store.CompetitionDto;
 import com.example.aftas.core.dao.model.entity.Competition;
 import com.example.aftas.core.dao.repository.CompetitionRepository;
 import com.example.aftas.core.service.CompetitionService;
+import com.example.aftas.shared.Const.AppEndpoints;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping("/api/competitions")
+@RequestMapping(AppEndpoints.COMPETITION_ENDPOINT)
 public class CompetitionController {
 
     private final CompetitionService competitionService;

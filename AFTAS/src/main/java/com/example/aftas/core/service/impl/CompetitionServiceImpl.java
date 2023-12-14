@@ -50,11 +50,6 @@ public class CompetitionServiceImpl implements CompetitionService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public Competition getCompetitionByCode(String code) {
-        return null;
-    }
-
     private GetCompetitionDto mapCompetitionToDtoWithStatus(Competition competition) {
         GetCompetitionDto competitionDto = modelMapper.map(competition, GetCompetitionDto.class);
         competitionDto.setStatus(calculateCompetitionStatus(competition));

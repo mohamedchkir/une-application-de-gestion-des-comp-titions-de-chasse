@@ -11,5 +11,4 @@ public interface CompetitionService {
 
     List<GetCompetitionDto> getAllCompetitionsWithStatus();
 
-    Competition getCompetitionByCode(String code);
 }
