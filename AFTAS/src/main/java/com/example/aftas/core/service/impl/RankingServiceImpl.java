@@ -3,11 +3,9 @@ package com.example.aftas.core.service.impl;
 import com.example.aftas.common.helper.Validation.Ranking.RankingValidation;
 import com.example.aftas.core.dao.model.dto.Get.GetRankingDto;
 import com.example.aftas.core.dao.model.dto.Store.RankingDto;
-import com.example.aftas.core.dao.model.entity.Competition;
-import com.example.aftas.core.dao.model.entity.Member;
-import com.example.aftas.core.dao.model.entity.Ranking;
-import com.example.aftas.core.dao.model.entity.RankingKey;
+import com.example.aftas.core.dao.model.entity.*;
 import com.example.aftas.core.dao.repository.CompetitionRepository;
+import com.example.aftas.core.dao.repository.HuntingRepository;
 import com.example.aftas.core.dao.repository.MemberRepository;
 import com.example.aftas.core.dao.repository.RankingRepository;
 import com.example.aftas.core.service.RankingService;
@@ -19,7 +17,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,6 +30,7 @@ public class RankingServiceImpl implements RankingService {
     private final CompetitionRepository competitionRepository;
     private final ModelMapper modelMapper;
     private final MemberRepository memberRepository;
+    private HuntingRepository huntingRepository;
 
     @Override
     public RankingDto RegisterMemberInCompetition(RankingDto rankingDto) {
@@ -67,4 +68,6 @@ public class RankingServiceImpl implements RankingService {
                 .map((element) -> modelMapper.map(element, GetRankingDto.class))
                 .collect(Collectors.toList());
     }
+
+
 }

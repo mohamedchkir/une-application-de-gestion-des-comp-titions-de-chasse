@@ -11,4 +11,6 @@ public interface RankingService {
     RankingDto RegisterMemberInCompetition(RankingDto rankingDto);
 
     List<GetRankingDto> getAllRankings();
+
+
 }
