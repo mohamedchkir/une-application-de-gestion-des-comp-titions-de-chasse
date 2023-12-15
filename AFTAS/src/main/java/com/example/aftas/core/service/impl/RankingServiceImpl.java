@@ -20,12 +20,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RankingServiceImpl implements RankingService {
 
-    private final RankingRepository repository;
+    private final RankingRepository rankingRepository;
     private final CompetitionRepository competitionRepository;
     private final ModelMapper modelMapper;
     private final MemberRepository memberRepository;
@@ -42,7 +43,7 @@ public class RankingServiceImpl implements RankingService {
 
         // Create the ranking key and check if the member is already registered in the competition
         RankingKey rankingKey = new RankingKey(rankingDto.getCompetition().getCode(), rankingDto.getMember().getNum());
-        if (repository.findById(rankingKey).isPresent()) {
+        if (rankingRepository.findById(rankingKey).isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"This member is already registered in that competition.");
         }
 
@@ -54,14 +55,16 @@ public class RankingServiceImpl implements RankingService {
         // Save the ranking
         Ranking ranking = modelMapper.map(rankingDto, Ranking.class);
         ranking.setId(rankingKey);
-        Ranking saved = repository.save(ranking);
+        Ranking saved = rankingRepository.save(ranking);
 
         return modelMapper.map(saved, RankingDto.class);
     }
 
-
     @Override
     public List<GetRankingDto> getAllRankings() {
-        return null;
+
+        return rankingRepository.findAll().stream()
+                .map((element) -> modelMapper.map(element, GetRankingDto.class))
+                .collect(Collectors.toList());
     }
 }
