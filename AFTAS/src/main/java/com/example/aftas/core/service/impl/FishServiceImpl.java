@@ -45,7 +45,10 @@ public class FishServiceImpl implements FishService {
 
     @Override
     public List<GetFishDto> getAllFish() {
-        return null;
+        return fishRepository.findAll()
+                .stream()
+                .map((element) -> modelMapper.map(element, GetFishDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
