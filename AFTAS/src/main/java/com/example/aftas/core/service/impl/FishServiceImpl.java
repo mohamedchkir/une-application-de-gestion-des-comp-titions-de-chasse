@@ -50,7 +50,13 @@ public class FishServiceImpl implements FishService {
 
     @Override
     public GetFishDto getFishByName(String name) {
-        return null;
+        Optional<Fish> fish = fishRepository.findByName(name);
+
+        if (fish.isPresent()){
+            throw new ResponseStatusException(HttpStatus.FOUND,"this is a fish already with the same name");
+        }
+
+        return modelMapper.map(fish, GetFishDto.class);
     }
 }
 
