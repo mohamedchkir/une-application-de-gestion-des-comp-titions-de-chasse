@@ -1,13 +1,15 @@
 package com.example.aftas.core.service;
 
+import com.example.aftas.core.dao.model.dto.Get.GetFishDto;
+import com.example.aftas.core.dao.model.dto.Store.FishDto;
 import com.example.aftas.core.dao.model.entity.Fish;
 
 import java.util.List;
 
 public interface FishService {
-    Fish addFish(Fish fish);
+    FishDto addFish(FishDto fish);
 
-    List<Fish> getAllFish();
+    List<GetFishDto> getAllFish();
 
-    Fish getFishByName(String name);
+    GetFishDto getFishByName(String name);
 }
