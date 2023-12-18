@@ -98,22 +98,8 @@ public class CompetitionServiceImpl implements CompetitionService {
 
     private GetCompetitionDto mapCompetitionToDtoWithStatus(Competition competition) {
         GetCompetitionDto competitionDto = modelMapper.map(competition, GetCompetitionDto.class);
-        competitionDto.setStatus(calculateCompetitionStatus(competition));
+        competitionDto.setStatus(CompetitionValidation.calculateCompetitionStatus(competition));
         return competitionDto;
     }
-
-    private CompetitionStatus calculateCompetitionStatus(Competition competition) {
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        LocalDate competitionDate = competition.getDate();
-
-        if (currentDateTime.isBefore(competitionDate.atTime(competition.getStartTime()))) {
-            return CompetitionStatus.UPCOMING;
-        } else if (currentDateTime.isAfter(competitionDate.atTime(competition.getEndTime()))) {
-            return CompetitionStatus.COMPLETED;
-        } else {
-            return CompetitionStatus.ONGOING;
-        }
-    }
-
 
 }
