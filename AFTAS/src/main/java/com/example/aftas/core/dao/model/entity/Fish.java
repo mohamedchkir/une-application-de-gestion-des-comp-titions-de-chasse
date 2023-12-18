@@ -1,9 +1,6 @@
 package com.example.aftas.core.dao.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -20,6 +17,7 @@ import java.util.Objects;
 public class Fish {
     @Id
     private String name;
+    @Column(name = "average_weight")
     private Double averageWeight;
 
     @ManyToOne

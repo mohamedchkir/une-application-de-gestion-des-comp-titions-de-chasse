@@ -27,12 +27,12 @@ public class FishServiceImpl implements FishService {
 
 
     @Override
-    public FishDto addFish(FishDto fishDto) {
+    public GetFishDto addFish(FishDto fishDto) {
         Level level = levelRepository.findById(fishDto.getLevel().getCode())
                 .orElseThrow(() -> new IllegalArgumentException("Level not found"));
 
         if (fishRepository.existsByName(fishDto.getName())) {
-            throw new IllegalArgumentException("A fish with the same name already exists");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A fish with the same name already exists");
         }
 
         Fish fish = modelMapper.map(fishDto, Fish.class);
@@ -40,26 +40,33 @@ public class FishServiceImpl implements FishService {
 
         Fish savedFish = fishRepository.save(fish);
 
-        return modelMapper.map(savedFish, FishDto.class);
+        return modelMapper.map(savedFish, GetFishDto.class);
     }
 
     @Override
     public List<GetFishDto> getAllFish() {
-        return fishRepository.findAll()
-                .stream()
+        List<Fish> fishList = fishRepository.findAll();
+
+        if (fishList.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No fish found");
+        }
+
+        return fishList.stream()
                 .map((element) -> modelMapper.map(element, GetFishDto.class))
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public GetFishDto getFishByName(String name) {
         Optional<Fish> fish = fishRepository.findByName(name);
 
-        if (fish.isPresent()){
-            throw new ResponseStatusException(HttpStatus.FOUND,"this is a fish already with the same name");
+        if (fish.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Fish not found with the given name: " + name);
         }
 
-        return modelMapper.map(fish, GetFishDto.class);
+        return modelMapper.map(fish.get(), GetFishDto.class);
     }
 }
+
 
