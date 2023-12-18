@@ -12,6 +12,8 @@ public class AppEndpoints {
     public static final String LEVEL_ENDPOINT = VERSION + "/levels";
     public static final String RANKING_ENDPOINT = VERSION + "/rankings";
     public static final String HUNTING_ENDPOINT = VERSION + "/hunting";
+    public static final String FISH_ENDPOINT = VERSION + "/fishes";
+
 
 
 }

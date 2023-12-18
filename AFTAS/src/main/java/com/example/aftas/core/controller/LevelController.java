@@ -20,8 +20,8 @@ public class LevelController {
     private final LevelService levelService;
 
     @PostMapping
-    public ResponseEntity<LevelDto> addLevel(@RequestBody @Valid LevelDto levelDto) {
-        LevelDto addedLevel = levelService.addLevel(levelDto);
+    public ResponseEntity<GetLevelDto> addLevel(@RequestBody @Valid LevelDto levelDto) {
+        GetLevelDto addedLevel = levelService.addLevel(levelDto);
         return new ResponseEntity<>(addedLevel, HttpStatus.CREATED);
     }
 

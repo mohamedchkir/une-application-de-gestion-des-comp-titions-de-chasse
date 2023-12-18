@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -24,24 +23,29 @@ public class LevelServiceImpl implements LevelService {
     private final ModelMapper modelMapper;
 
     @Override
-    public LevelDto addLevel(LevelDto levelDto) {
+    public GetLevelDto addLevel(LevelDto levelDto) {
         Optional<Level> maxLevelPoint = levelRepository.findTopByOrderByPointsDesc();
 
         maxLevelPoint.ifPresent(maxLevel -> {
-            if (levelDto.getPoints() > maxLevel.getPoints()) {
-                Level level = modelMapper.map(levelDto, Level.class);
-                levelRepository.save(level);
-            } else {
+            if (levelDto.getPoints() <= maxLevel.getPoints()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Points must be greater than the previous level");
             }
         });
 
-        return levelDto;
+        Level level = modelMapper.map(levelDto, Level.class);
+        levelRepository.save(level);
+
+        return modelMapper.map(level, GetLevelDto.class);
     }
+
 
     @Override
     public List<GetLevelDto> getAllLevels() {
         List<Level> levels = levelRepository.findAll();
+
+        if (levels.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No level Found");
+        }
 
         return levels.stream()
                 .map(level -> modelMapper.map(level, GetLevelDto.class))
@@ -56,7 +60,7 @@ public class LevelServiceImpl implements LevelService {
         if (optionalLevel.isPresent()) {
             return modelMapper.map(optionalLevel.get(), GetLevelDto.class);
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "level with code " + code + " not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "level with code :" + code + " not found");
         }
     }
 
