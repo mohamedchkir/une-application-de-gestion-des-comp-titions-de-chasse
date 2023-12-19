@@ -33,7 +33,7 @@ public class CompetitionController {
     public ResponseEntity<Object> addCompetition(@Valid @RequestBody CompetitionDto competitionDto) {
         try {
             CompetitionDto createdCompetition = competitionService.addCompetition(competitionDto);
-            throw new ResponseStatusException(HttpStatus.CREATED, "Competition created successfully");
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdCompetition);
         } catch (ResponseStatusException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getReason());
         }
