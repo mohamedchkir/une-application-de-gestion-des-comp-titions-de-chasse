@@ -92,7 +92,7 @@ public class CompetitionServiceImpl implements CompetitionService {
 
         return savedRankings
                 .stream()
-                .map(element -> GetRankingDto.builder().rank(element.getRank()).score(element.getScore()).build())
+                .map(element -> GetRankingDto.builder().rank(element.getRank()).score(element.getScore()).member(modelMapper.map(element.getMember(), GetMemberDto.class)).competition(modelMapper.map(element.getCompetition(), GetCompetitionDto.class)).build())
                 .collect(Collectors.toList());
     }
 
