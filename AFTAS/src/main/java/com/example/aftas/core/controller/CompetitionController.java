@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,8 +41,8 @@ public class CompetitionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<GetCompetitionDto>> getAllCompetitionsWithStatus() {
-        List<GetCompetitionDto> competitionDto = competitionService.getAllCompetitionsWithStatus();
+    public ResponseEntity<Page<GetCompetitionDto>> getAllCompetitionsWithStatus(int page, int size) {
+        Page<GetCompetitionDto> competitionDto = competitionService.getAllCompetitionsWithStatus(page, size);
         return ResponseEntity.ok(competitionDto);
     }
     @GetMapping("/{code}/calculate-score")
