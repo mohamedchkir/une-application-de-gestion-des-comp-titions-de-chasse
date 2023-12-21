@@ -17,6 +17,8 @@ import com.example.aftas.shared.Enum.CompetitionStatus;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -56,11 +58,9 @@ public class CompetitionServiceImpl implements CompetitionService {
     }
 
     @Override
-    public List<GetCompetitionDto> getAllCompetitionsWithStatus() {
-        List<Competition> competitions = competitionRepository.findAll();
-        return competitions.stream()
-                .map(this::mapCompetitionToDtoWithStatus)
-                .collect(Collectors.toList());
+    public Page<GetCompetitionDto> getAllCompetitionsWithStatus(int page, int size) {
+        Page<Competition> competitions = competitionRepository.findAll(PageRequest.of(page, size));
+        return competitions.map(this::mapCompetitionToDtoWithStatus);
     }
 
     @Override
