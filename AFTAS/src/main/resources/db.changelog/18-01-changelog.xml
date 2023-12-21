@@ -10,6 +10,7 @@
             <column name="code" type="VARCHAR(255)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_competition"/>
             </column>
+            <column name="number_of_participants" type="INT" defaultValue="0"/>
             <column name="date" type="DATE"/>
             <column name="start_time" type="TIME"/>
             <column name="end_time" type="TIME"/>
