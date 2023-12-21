@@ -13,6 +13,7 @@ import java.time.LocalTime;
 @Setter
 public class GetCompetitionDto implements Serializable {
     private String code;
+    private Integer numberOfParticipants;
     private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
