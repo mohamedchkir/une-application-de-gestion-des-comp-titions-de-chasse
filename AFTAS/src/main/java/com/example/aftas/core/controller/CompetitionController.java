@@ -45,6 +45,12 @@ public class CompetitionController {
         Page<GetCompetitionDto> competitionDto = competitionService.getAllCompetitionsWithStatus(page, size);
         return ResponseEntity.ok(competitionDto);
     }
+
+    @GetMapping("/{code}")
+    public GetCompetitionDto getCompetitionByCode(@PathVariable String code) {
+        return competitionService.getCompetitionByCode(code);
+    }
+
     @GetMapping("/{code}/calculate-score")
     public ResponseEntity<List<GetRankingDto>> calculateScore(@PathVariable String code) {
         List<GetRankingDto> calculatedScores = competitionService.calculateScore(code);
