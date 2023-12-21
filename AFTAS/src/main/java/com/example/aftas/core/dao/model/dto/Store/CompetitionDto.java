@@ -13,6 +13,7 @@ import java.time.LocalTime;
 public class CompetitionDto implements Serializable {
 
         private String code;
+        private Integer numberOfParticipants;
 
         @NotNull(message = "date cannot be null.")
         @Future(message = "date cannot be in the past.")
