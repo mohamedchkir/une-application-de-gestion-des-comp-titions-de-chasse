@@ -51,7 +51,7 @@ public class CompetitionServiceImpl implements CompetitionService {
 
         Competition competition = modelMapper.map(competitionDto, Competition.class);
         competition.setCode(competitionCode);
-
+        competition.setNumberOfParticipants(0);
         Competition savedCompetition = competitionRepository.save(competition);
 
         return modelMapper.map(savedCompetition, CompetitionDto.class);
