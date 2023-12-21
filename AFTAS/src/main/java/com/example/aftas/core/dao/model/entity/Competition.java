@@ -22,6 +22,8 @@ import java.util.Objects;
 public class Competition {
     @Id
     private String code;
+    @Column(name = "number_of_participants")
+    private Integer numberOfParticipants;
     private LocalDate date;
     @Column(name = "start_time")
     private LocalTime startTime;
