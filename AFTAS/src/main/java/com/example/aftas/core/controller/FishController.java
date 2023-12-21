@@ -15,8 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-@Controller
-
+@RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping(AppEndpoints.FISH_ENDPOINT)
 public class FishController {
