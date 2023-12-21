@@ -58,6 +58,10 @@ public class RankingServiceImpl implements RankingService {
         ranking.setId(rankingKey);
         Ranking saved = rankingRepository.save(ranking);
 
+        //increment the number of participants in the competition
+        competition.setNumberOfParticipants(competition.getNumberOfParticipants() + 1);
+        Competition savedCompetition = competitionRepository.save(competition);
+
         return modelMapper.map(saved, RankingDto.class);
     }
 
