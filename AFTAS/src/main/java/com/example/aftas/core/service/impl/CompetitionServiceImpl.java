@@ -35,8 +35,8 @@ public class CompetitionServiceImpl implements CompetitionService {
     private final CompetitionValidation competitionValidation;
     private final RankingRepository rankingRepository;
     private final MemberRepository memberRepository;
-    private HuntingRepository huntingRepository;
     private final ModelMapper modelMapper;
+    private HuntingRepository huntingRepository;
 
     @Override
     public CompetitionDto addCompetition(CompetitionDto competitionDto) {
@@ -65,7 +65,7 @@ public class CompetitionServiceImpl implements CompetitionService {
     public List<GetRankingDto> calculateScore(String code) {
         Optional<Competition> optionalCompetition = competitionRepository.findById(code);
         if (optionalCompetition.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"There is no competition with that code.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no competition with that code.");
         }
 
         List<Ranking> rankings = rankingRepository.findByCompetition(optionalCompetition.get());
@@ -90,24 +90,31 @@ public class CompetitionServiceImpl implements CompetitionService {
 
         return savedRankings
                 .stream()
-                .map(element -> GetRankingDto.builder().rank(element.getRank()).score(element.getScore()).member(modelMapper.map(element.getMember(), GetMemberDto.class)).competition(modelMapper.map(element.getCompetition(), GetCompetitionDto.class)).build())
-                .collect(Collectors.toList());
+                .map(element -> GetRankingDto
+                        .builder()
+                        .rank(element.getRank())
+                        .score(element.getScore())
+                        .member(GetMemberDto.builder().num(element.getMember().getNum()).name(element.getMember().getName()).familyName(element.getMember().getFamilyName()).build())
+                        .competition(GetCompetitionDto.builder().code(element.getCompetition().getCode()).build())
+                        .build()
+                ).collect(Collectors.toList());
+
     }
 
-    @Override
-    public GetCompetitionDto getCompetitionByCode(String code) {
-        Optional<Competition> optionalCompetition = competitionRepository.findByCode(code);
-        if (optionalCompetition.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no competition with that code.");
+        @Override
+        public GetCompetitionDto getCompetitionByCode (String code){
+            Optional<Competition> optionalCompetition = competitionRepository.findByCode(code);
+            if (optionalCompetition.isEmpty()) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no competition with that code.");
+            }
+
+            return mapCompetitionToDtoWithStatus(optionalCompetition.get());
         }
 
-        return mapCompetitionToDtoWithStatus(optionalCompetition.get());
-    }
+        private GetCompetitionDto mapCompetitionToDtoWithStatus (Competition competition){
+            GetCompetitionDto competitionDto = modelMapper.map(competition, GetCompetitionDto.class);
+            competitionDto.setStatus(CompetitionValidation.calculateCompetitionStatus(competition));
+            return competitionDto;
+        }
 
-    private GetCompetitionDto mapCompetitionToDtoWithStatus(Competition competition) {
-        GetCompetitionDto competitionDto = modelMapper.map(competition, GetCompetitionDto.class);
-        competitionDto.setStatus(CompetitionValidation.calculateCompetitionStatus(competition));
-        return competitionDto;
     }
-
-}
