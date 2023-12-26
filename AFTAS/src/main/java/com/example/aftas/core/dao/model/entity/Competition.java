@@ -1,5 +1,6 @@
 package com.example.aftas.core.dao.model.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -21,8 +22,12 @@ import java.util.Objects;
 public class Competition {
     @Id
     private String code;
+    @Column(name = "number_of_participants")
+    private Integer numberOfParticipants;
     private LocalDate date;
+    @Column(name = "start_time")
     private LocalTime startTime;
+    @Column(name = "end_time")
     private LocalTime endTime;
     private String location;
     private Double amount;
@@ -35,19 +40,5 @@ public class Competition {
     @ToString.Exclude
     private List<Ranking> rankingList;
 
-    @Override
-    public final boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
-        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
-        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
-        if (thisEffectiveClass != oEffectiveClass) return false;
-        Competition that = (Competition) o;
-        return getCode() != null && Objects.equals(getCode(), that.getCode());
-    }
 
-    @Override
-    public final int hashCode() {
-        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
-    }
 }
