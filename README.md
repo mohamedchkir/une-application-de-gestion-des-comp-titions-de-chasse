@@ -1,8 +1,8 @@
-## Aftas Club - Competition Management Application
+## Aftas Club - Competition Management Application (Backend)
 
 **Description:**
 
-This application is designed to manage the underwater hunting competitions organized by the Aftas Club. It offers features for both club administration and jury members.
+This repository contains the backend implementation of the Aftas Club Competition Management Application. It is specifically designed to manage the underwater hunting competitions organized by the Aftas Club, providing features for club administration and jury members.
 
 **Functionalities:**
 
@@ -19,7 +19,6 @@ This application is designed to manage the underwater hunting competitions organ
 **Technologies:**
 
 * **Backend:** Spring Boot
-* **Frontend:** Angular
 * **Database:** (Specify actual database used)
 
 **Project Setup:**
@@ -33,26 +32,21 @@ git clone https://github.com/mohamedchkir/une-application-de-gestion-des-comp-ti
 **2. Install dependencies:**
 
 ```bash
-cd une-application-de-gestion-des-comp-titions-de-chasse
-cd backend
+cd une-application-de-gestion-des-comp-titions-de-chasse/backend
 mvn package
-cd ../frontend
-npm install
 ```
 
 **3. Configure database connection:**
 
-- Update database connection details in `backend/src/main/resources/application.properties`.
+- Update database connection details in `aftas/src/main/resources/application.properties`.
 
 **4. Run the application:**
 
 ```bash
 cd backend
 mvn spring-boot:run
-cd ../frontend
-ng serve -o
 ```
 
-**5. Access the application:**
+**5. Access the API:**
 
-Open http://localhost:4200 in your web browser.
+The backend API will be accessible at http://localhost:8080.
