@@ -16,10 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,7 +36,7 @@ public class RankingServiceImpl implements RankingService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"There is no competition with that code."));
 
         // Check if the member exists
-        Member member = memberRepository.findByNum(rankingDto.getMember().getNum())
+        User user = memberRepository.findByNum(rankingDto.getMember().getNum())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"There is no member with that number."));
 
         // Create the ranking key and check if the member is already registered in the competition

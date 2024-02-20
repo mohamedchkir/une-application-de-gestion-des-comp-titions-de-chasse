@@ -1,8 +1,6 @@
 package com.example.aftas.core.dao.model.dto.Store;
 
 import com.example.aftas.core.dao.model.dto.update.UpdateMemberDto;
-import com.example.aftas.core.dao.model.entity.Competition;
-import com.example.aftas.core.dao.model.entity.Member;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;

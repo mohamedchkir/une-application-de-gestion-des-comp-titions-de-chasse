@@ -5,9 +5,6 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
-import org.hibernate.proxy.HibernateProxy;
-
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -26,6 +23,6 @@ public class Ranking {
     private Competition competition;
 
     @ManyToOne
-    private Member member;
+    private User user;
 
 }

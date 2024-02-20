@@ -2,9 +2,6 @@ package com.example.aftas.core.dao.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.proxy.HibernateProxy;
-
-import java.util.Objects;
 
 @Entity
 @Getter
@@ -24,7 +21,7 @@ public class Hunting {
     private Fish fish;
 
     @ManyToOne
-    private Member member;
+    private User user;
 
     @ManyToOne
     private Competition competition;

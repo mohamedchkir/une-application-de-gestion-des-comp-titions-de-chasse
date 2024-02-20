@@ -48,7 +48,7 @@
         </createTable>
     </changeSet>
     <changeSet id="1702938308355-5" author="chkir">
-        <createTable tableName="member">
+        <createTable tableName="user">
             <column name="num" type="INT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_member"/>
             </column>
@@ -76,7 +76,7 @@
     </changeSet>
     <changeSet id="1702938308355-7" author="chkir">
         <addUniqueConstraint columnNames="identity_number" constraintName="uc_member_identity_number"
-                             tableName="member"/>
+                             tableName="user"/>
     </changeSet>
     <changeSet id="1702938308355-8" author="chkir">
         <addForeignKeyConstraint baseColumnNames="level_code" baseTableName="fish"
@@ -96,7 +96,7 @@
     <changeSet id="1702938308355-11" author="chkir">
         <addForeignKeyConstraint baseColumnNames="member_num" baseTableName="hunting"
                                  constraintName="FK_HUNTING_ON_MEMBER_NUM" referencedColumnNames="num"
-                                 referencedTableName="member"/>
+                                 referencedTableName="user"/>
     </changeSet>
     <changeSet id="1702938308355-12" author="chkir">
         <addForeignKeyConstraint baseColumnNames="competition_code" baseTableName="ranking"
@@ -106,7 +106,7 @@
     <changeSet id="1702938308355-13" author="chkir">
         <addForeignKeyConstraint baseColumnNames="member_num" baseTableName="ranking"
                                  constraintName="FK_RANKING_ON_MEMBER_NUM" referencedColumnNames="num"
-                                 referencedTableName="member"/>
+                                 referencedTableName="user"/>
     </changeSet>
 
 </databaseChangeLog>

@@ -1,12 +1,12 @@
 package com.example.aftas.core.dao.repository;
 
-import com.example.aftas.core.dao.model.entity.Member;
+import com.example.aftas.core.dao.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface MemberRepository extends JpaRepository<Member, Integer> {
-    Optional<Member> findByNum(Integer num);
+public interface MemberRepository extends JpaRepository<User, Integer> {
+    Optional<User> findByNum(Integer num);
 }

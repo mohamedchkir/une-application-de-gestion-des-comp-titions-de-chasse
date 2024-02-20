@@ -37,7 +37,7 @@ public class HuntingServiceImpl implements HuntingService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "their is no competition with that code.");
         }
 
-        Optional<Member> optionalMember = memberRepository.findById(huntingDto.getMember().getNum());
+        Optional<User> optionalMember = memberRepository.findById(huntingDto.getMember().getNum());
         if (optionalMember.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "their is no member with that number.");
         }
@@ -53,7 +53,7 @@ public class HuntingServiceImpl implements HuntingService {
 
         Hunting hunting = mapper.map(huntingDto, Hunting.class);
 
-        Optional<Ranking> optionalRanking = rankingRepository.findById(new RankingKey(hunting.getCompetition().getCode(), hunting.getMember().getNum()));
+        Optional<Ranking> optionalRanking = rankingRepository.findById(new RankingKey(hunting.getCompetition().getCode(), hunting.getUser().getNum()));
         if (optionalRanking.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "you are not registered to this competition.");
         }
@@ -63,7 +63,7 @@ public class HuntingServiceImpl implements HuntingService {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "you can store a hunt only when competition is ongoing.");
         }
 
-        Optional<Hunting> existsHunting = repository.findByFishAndCompetitionAndMember(hunting.getFish(), hunting.getCompetition(), hunting.getMember());
+        Optional<Hunting> existsHunting = repository.findByFishAndCompetitionAndMember(hunting.getFish(), hunting.getCompetition(), hunting.getUser());
         if (existsHunting.isPresent()) {
             Hunting hunt = existsHunting.get();
             hunt.setNumberOfFish(hunt.getNumberOfFish() + 1);

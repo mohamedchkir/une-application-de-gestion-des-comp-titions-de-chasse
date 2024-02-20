@@ -2,7 +2,7 @@ package com.example.aftas.core.service.impl;
 
 import com.example.aftas.core.dao.model.dto.Get.GetMemberDto;
 import com.example.aftas.core.dao.model.dto.Store.MemberDto;
-import com.example.aftas.core.dao.model.entity.Member;
+import com.example.aftas.core.dao.model.entity.User;
 import com.example.aftas.core.dao.repository.MemberRepository;
 import com.example.aftas.core.service.MemberService;
 import lombok.AllArgsConstructor;
@@ -26,30 +26,30 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberDto addMember(MemberDto storeMemberDto) {
         // Check if member with the same num already exists
-        Optional<Member> optional = memberRepository.findById(storeMemberDto.getNum());
+        Optional<User> optional = memberRepository.findById(storeMemberDto.getNum());
         if (optional.isPresent()) {
             throw new IllegalArgumentException("Member with the same num already exists");
         }
 
         // Map DTO to entity
-        Member member = modelMapper.map(storeMemberDto, Member.class);
-        member.setAccessionDate(LocalDate.now());
-        Member savedMember = memberRepository.save(member);
+        User user = modelMapper.map(storeMemberDto, User.class);
+        user.setAccessionDate(LocalDate.now());
+        User savedUser = memberRepository.save(user);
 
-        return modelMapper.map(savedMember, MemberDto.class);
+        return modelMapper.map(savedUser, MemberDto.class);
     }
 
     @Override
     public List<GetMemberDto> getAllMembers() {
-        List<Member> members = memberRepository.findAll();
-        return members.stream()
+        List<User> users = memberRepository.findAll();
+        return users.stream()
                 .map(member -> modelMapper.map(member, GetMemberDto.class))
                 .collect(Collectors.toList());
     }
 
     @Override
     public GetMemberDto getMemberByNum(Integer num) {
-        Optional<Member> optionalMember = memberRepository.findByNum(num);
+        Optional<User> optionalMember = memberRepository.findByNum(num);
 
         return optionalMember.map(member -> modelMapper.map(member, GetMemberDto.class))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Member not found"));
