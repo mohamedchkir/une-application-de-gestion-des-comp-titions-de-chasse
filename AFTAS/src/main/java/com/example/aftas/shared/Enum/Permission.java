@@ -7,21 +7,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum Permission {
 
-    USER_READ("user:read"),
-    USER_WRITE("user:write"),
-    USER_DELETE("user:delete"),
-    USER_UPDATE("user:update"),
+    COMPETITION_READ("competition:read"),
+    COMPETITION_MANAGE("competition:manage"),
+    COMPETITION_EVALUATE("competition:evaluate"),
 
-    ADMIN_READ("admin:read"),
-    ADMIN_WRITE("admin:write"),
-    ADMIN_DELETE("admin:delete"),
-    ADMIN_UPDATE("admin:update"),
-
-    SUPER_ADMIN_READ("superAdmin:read"),
-    SUPER_ADMIN_WRITE("superAdmin:write"),
-    SUPER_ADMIN_DELETE("superAdmin:delete"),
-    SUPER_ADMIN_UPDATE("superAdmin:update");
-
+    USER_MANAGE("user:manage");
 
     private final String permission;
 }

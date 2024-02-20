@@ -10,27 +10,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.example.aftas.shared.Enum.Permission.*;
+
 @Getter
 @RequiredArgsConstructor
 public enum Role {
-    USER(Collections.emptySet()),
-    ADMIN(Set.of(
-            ADMIN_READ,
-            ADMIN_WRITE,
-            ADMIN_DELETE,
-            ADMIN_UPDATE
+    ADHERENT(Collections.emptySet()),
+    JURY(Set.of(
+            COMPETITION_MANAGE,
+            COMPETITION_EVALUATE
     )),
-    SUPER_ADMIN(Set.of(
-            SUPER_ADMIN_READ,
-            SUPER_ADMIN_WRITE,
-            SUPER_ADMIN_DELETE,
-            SUPER_ADMIN_UPDATE,
-            ADMIN_READ,
-            ADMIN_WRITE,
-            ADMIN_DELETE,
-            ADMIN_UPDATE
-    )
-    );
+    MANAGER(Set.of(
+            COMPETITION_MANAGE,
+            COMPETITION_EVALUATE,
+            USER_MANAGE
+    ));
 
     private final Set<Permission> permissions;
 
