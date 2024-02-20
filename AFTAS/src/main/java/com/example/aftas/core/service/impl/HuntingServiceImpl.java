@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class HuntingServiceImpl implements HuntingService {
     private final HuntingRepository repository;
     private final CompetitionRepository competitionRepository;
-    private final MemberRepository memberRepository;
+    private final UserRepository userRepository;
     private final FishRepository fishRepository;
     private final RankingRepository rankingRepository;
     private final ModelMapper mapper;
@@ -37,7 +37,7 @@ public class HuntingServiceImpl implements HuntingService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "their is no competition with that code.");
         }
 
-        Optional<User> optionalMember = memberRepository.findById(huntingDto.getMember().getNum());
+        Optional<User> optionalMember = userRepository.findById(huntingDto.getMember().getNum());
         if (optionalMember.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "their is no member with that number.");
         }

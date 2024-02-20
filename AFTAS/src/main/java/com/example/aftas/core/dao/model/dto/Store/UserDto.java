@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class MemberDto implements Serializable {
+public class UserDto implements Serializable {
     @NotNull(message = "num cannot be null.")
     @Positive(message = "num cannot be negative.")
     private Integer num;

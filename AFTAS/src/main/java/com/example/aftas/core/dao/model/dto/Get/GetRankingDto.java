@@ -11,5 +11,5 @@ public class GetRankingDto {
     private Integer rank;
     private Integer score;
     private GetCompetitionDto competition;
-    private GetMemberDto member;
+    private GetUserDto member;
 }

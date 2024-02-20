@@ -3,7 +3,7 @@ package com.example.aftas.core.service.impl;
 import com.example.aftas.common.helper.Validation.Compitition.CompetitionCodeGenerator;
 import com.example.aftas.common.helper.Validation.Compitition.CompetitionValidation;
 import com.example.aftas.core.dao.model.dto.Get.GetCompetitionDto;
-import com.example.aftas.core.dao.model.dto.Get.GetMemberDto;
+import com.example.aftas.core.dao.model.dto.Get.GetUserDto;
 import com.example.aftas.core.dao.model.dto.Get.GetRankingDto;
 import com.example.aftas.core.dao.model.dto.Store.CompetitionDto;
 import com.example.aftas.core.dao.model.entity.Competition;
@@ -11,7 +11,7 @@ import com.example.aftas.core.dao.model.entity.Hunting;
 import com.example.aftas.core.dao.model.entity.Ranking;
 import com.example.aftas.core.dao.repository.CompetitionRepository;
 import com.example.aftas.core.dao.repository.HuntingRepository;
-import com.example.aftas.core.dao.repository.MemberRepository;
+import com.example.aftas.core.dao.repository.UserRepository;
 import com.example.aftas.core.dao.repository.RankingRepository;
 import com.example.aftas.core.service.CompetitionService;
 import lombok.AllArgsConstructor;
@@ -34,7 +34,7 @@ public class CompetitionServiceImpl implements CompetitionService {
     private final CompetitionRepository competitionRepository;
     private final CompetitionValidation competitionValidation;
     private final RankingRepository rankingRepository;
-    private final MemberRepository memberRepository;
+    private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private HuntingRepository huntingRepository;
 
@@ -94,7 +94,7 @@ public class CompetitionServiceImpl implements CompetitionService {
                         .builder()
                         .rank(element.getRank())
                         .score(element.getScore())
-                        .member(GetMemberDto.builder().num(element.getUser().getNum()).name(element.getUser().getFirstName()).familyName(element.getUser().getLastName()).build())
+                        .member(GetUserDto.builder().num(element.getUser().getNum()).name(element.getUser().getFirstName()).familyName(element.getUser().getLastName()).build())
                         .competition(GetCompetitionDto.builder().code(element.getCompetition().getCode()).build())
                         .build()
                 ).collect(Collectors.toList());

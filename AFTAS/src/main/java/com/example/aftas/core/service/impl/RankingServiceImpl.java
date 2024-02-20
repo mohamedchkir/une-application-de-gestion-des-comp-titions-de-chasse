@@ -6,7 +6,7 @@ import com.example.aftas.core.dao.model.dto.Store.RankingDto;
 import com.example.aftas.core.dao.model.entity.*;
 import com.example.aftas.core.dao.repository.CompetitionRepository;
 import com.example.aftas.core.dao.repository.HuntingRepository;
-import com.example.aftas.core.dao.repository.MemberRepository;
+import com.example.aftas.core.dao.repository.UserRepository;
 import com.example.aftas.core.dao.repository.RankingRepository;
 import com.example.aftas.core.service.RankingService;
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public class RankingServiceImpl implements RankingService {
     private final RankingRepository rankingRepository;
     private final CompetitionRepository competitionRepository;
     private final ModelMapper modelMapper;
-    private final MemberRepository memberRepository;
+    private final UserRepository userRepository;
     private HuntingRepository huntingRepository;
 
     @Override
@@ -36,7 +36,7 @@ public class RankingServiceImpl implements RankingService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"There is no competition with that code."));
 
         // Check if the member exists
-        User user = memberRepository.findByNum(rankingDto.getMember().getNum())
+        User user = userRepository.findByNum(rankingDto.getMember().getNum())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"There is no member with that number."));
 
         // Create the ranking key and check if the member is already registered in the competition

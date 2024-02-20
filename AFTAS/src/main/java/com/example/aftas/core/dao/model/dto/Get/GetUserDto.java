@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class GetMemberDto implements Serializable {
+public class GetUserDto implements Serializable {
     private Integer num;
     private String name;
     private String familyName;

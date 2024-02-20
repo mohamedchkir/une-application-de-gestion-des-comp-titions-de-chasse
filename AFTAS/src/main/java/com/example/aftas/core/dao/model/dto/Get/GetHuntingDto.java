@@ -11,6 +11,6 @@ public class GetHuntingDto implements Serializable {
     private Integer id;
     private Integer numberOfFish;
     private GetFishDto fish;
-    private GetMemberDto member;
+    private GetUserDto member;
     private GetCompetitionDto competition;
 }
