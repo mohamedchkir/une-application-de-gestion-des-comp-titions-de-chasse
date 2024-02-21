@@ -111,10 +111,10 @@ class CompetitionServiceImplTest {
         Mockito.doReturn(Optional.of(Competition.builder().build())).when(competitionRepository).findById(any());
         Mockito.doReturn(list).when(rankingRepository).findByCompetition(any());
 
-        Mockito.doReturn(huntingList.get(0)).when(huntingRepository).findByCompetitionAndMember(list.get(0).getCompetition(), list.get(0).getUser());
-        Mockito.doReturn(huntingList.get(1)).when(huntingRepository).findByCompetitionAndMember(list.get(1).getCompetition(), list.get(1).getUser());
-        Mockito.doReturn(huntingList.get(2)).when(huntingRepository).findByCompetitionAndMember(list.get(2).getCompetition(), list.get(2).getUser());
-        Mockito.doReturn(huntingList.get(3)).when(huntingRepository).findByCompetitionAndMember(list.get(3).getCompetition(), list.get(3).getUser());
+        Mockito.doReturn(huntingList.get(0)).when(huntingRepository).findByCompetitionAndUser(list.get(0).getCompetition(), list.get(0).getUser());
+        Mockito.doReturn(huntingList.get(1)).when(huntingRepository).findByCompetitionAndUser(list.get(1).getCompetition(), list.get(1).getUser());
+        Mockito.doReturn(huntingList.get(2)).when(huntingRepository).findByCompetitionAndUser(list.get(2).getCompetition(), list.get(2).getUser());
+        Mockito.doReturn(huntingList.get(3)).when(huntingRepository).findByCompetitionAndUser(list.get(3).getCompetition(), list.get(3).getUser());
 
         List<GetRankingDto> score = competitionService.calculateScore(code);
 

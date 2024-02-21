@@ -73,7 +73,7 @@ public class CompetitionServiceImpl implements CompetitionService {
         List<Ranking> rankingsAfterCalcScore = rankings
                 .stream()
                 .peek(ranking -> {
-                    List<Hunting> userHunting = huntingRepository.findByCompetitionAndMember(ranking.getCompetition(), ranking.getUser());
+                    List<Hunting> userHunting = huntingRepository.findByCompetitionAndUser(ranking.getCompetition(), ranking.getUser());
                     Integer huntScore = userHunting
                             .stream()
                             .map(hunting -> hunting.getFish().getLevel().getPoints() * hunting.getNumberOfFish())
@@ -94,7 +94,7 @@ public class CompetitionServiceImpl implements CompetitionService {
                         .builder()
                         .rank(element.getRank())
                         .score(element.getScore())
-                        .member(GetUserDto.builder().num(element.getUser().getNum()).name(element.getUser().getFirstName()).familyName(element.getUser().getLastName()).build())
+                        .member(GetUserDto.builder().num(element.getUser().getNum()).firstName(element.getUser().getFirstName()).lastName(element.getUser().getLastName()).build())
                         .competition(GetCompetitionDto.builder().code(element.getCompetition().getCode()).build())
                         .build()
                 ).collect(Collectors.toList());

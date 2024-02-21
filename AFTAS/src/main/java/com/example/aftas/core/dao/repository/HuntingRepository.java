@@ -12,9 +12,9 @@ import java.util.Optional;
 
 @Repository
 public interface HuntingRepository extends JpaRepository<Hunting, Integer> {
-    List<Hunting> findByCompetitionAndMember(Competition competition, User user);
+    List<Hunting> findByCompetitionAndUser(Competition competition, User user);
 
-    Optional<Hunting> findByFishAndCompetitionAndMember(Fish fish, Competition competition, User user);
+    Optional<Hunting> findByFishAndCompetitionAndUser(Fish fish, Competition competition, User user);
 
     List<Hunting> findByCompetition(Competition competition);
 }

@@ -63,7 +63,7 @@ public class HuntingServiceImpl implements HuntingService {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "you can store a hunt only when competition is ongoing.");
         }
 
-        Optional<Hunting> existsHunting = repository.findByFishAndCompetitionAndMember(hunting.getFish(), hunting.getCompetition(), hunting.getUser());
+        Optional<Hunting> existsHunting = repository.findByFishAndCompetitionAndUser(hunting.getFish(), hunting.getCompetition(), hunting.getUser());
         if (existsHunting.isPresent()) {
             Hunting hunt = existsHunting.get();
             hunt.setNumberOfFish(hunt.getNumberOfFish() + 1);
