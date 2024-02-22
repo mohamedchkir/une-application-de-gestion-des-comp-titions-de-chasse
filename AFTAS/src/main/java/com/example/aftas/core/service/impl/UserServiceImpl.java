@@ -2,9 +2,11 @@ package com.example.aftas.core.service.impl;
 
 import com.example.aftas.core.dao.model.dto.Get.GetUserDto;
 import com.example.aftas.core.dao.model.dto.Store.UserDto;
+import com.example.aftas.core.dao.model.dto.update.UpdateUserDto;
 import com.example.aftas.core.dao.model.entity.User;
 import com.example.aftas.core.dao.repository.UserRepository;
 import com.example.aftas.core.service.UserService;
+import com.example.aftas.shared.Enum.Role;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +55,20 @@ public class UserServiceImpl implements UserService {
 
         return optionalUser.map(user -> modelMapper.map(user, GetUserDto.class))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+    }
+
+    @Override
+    public GetUserDto updateUserRole(UpdateUserDto updateUserDto) {
+        Optional<User> optionalUser = userRepository.findByNum(updateUserDto.getNum());
+        if (optionalUser.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+
+        User user = optionalUser.get();
+
+        user.setRole(updateUserDto.getRole());
+        User updatedUser = userRepository.save(user);
+
+        return modelMapper.map(updatedUser, GetUserDto.class);
     }
 }
