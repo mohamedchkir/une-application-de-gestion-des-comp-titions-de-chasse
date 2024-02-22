@@ -1,5 +1,6 @@
 package com.example.aftas.core.dao.model.dto.request;
 
+import com.example.aftas.shared.Enum.IdentityDocument;
 import com.example.aftas.shared.Enum.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,6 +17,10 @@ public class RegisterRequest {
     private String email;
     private String password;
     private Role role;
+    private Integer num;
+    private String identityNumber;
+    private IdentityDocument identityDocument;
+    private String nationality;
 
 
 }

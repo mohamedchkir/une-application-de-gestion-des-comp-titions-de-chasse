@@ -9,15 +9,19 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+import static org.springframework.security.authorization.AuthorityReactiveAuthorizationManager.hasRole;
+
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping(AppEndpoints.FISH_ENDPOINT)
+@PreAuthorize("hasRole('MANAGER')")
 public class FishController {
     public final FishService fishService;
 

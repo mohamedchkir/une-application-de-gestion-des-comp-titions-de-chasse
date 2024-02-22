@@ -36,11 +36,15 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
+                .num(request.getNum())
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())
+                .identityNumber(request.getIdentityNumber())
+                .nationality(request.getNationality())
+                .identityDocument(request.getIdentityDocument())
                 .build();
         var savedUser =userRepository.save(user);
 

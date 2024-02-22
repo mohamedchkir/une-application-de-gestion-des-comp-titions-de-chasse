@@ -12,9 +12,10 @@ import lombok.*;
 @AllArgsConstructor
 public class Token {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String token;
+    @Column(name = "token_type")
     private TokenType tokenType;
     private boolean expired;
     private boolean revoked;

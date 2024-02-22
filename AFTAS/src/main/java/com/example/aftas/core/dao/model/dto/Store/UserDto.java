@@ -2,6 +2,7 @@ package com.example.aftas.core.dao.model.dto.Store;
 
 
 import com.example.aftas.shared.Enum.IdentityDocument;
+import com.example.aftas.shared.Enum.Role;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -17,13 +18,13 @@ public class UserDto implements Serializable {
     @Positive(message = "num cannot be negative.")
     private Integer num;
 
-    @NotNull(message = "name cannot be null.")
-    @NotBlank(message = "name cannot be blank.")
-    private String name;
+    @NotNull(message = "firstName cannot be null.")
+    @NotBlank(message = "firstName cannot be blank.")
+    private String firstName;
 
-    @NotNull(message = "family name cannot be null.")
-    @NotBlank(message = "family name cannot be blank.")
-    private String familyName;
+    @NotNull(message = "last name cannot be null.")
+    @NotBlank(message = "last name cannot be blank.")
+    private String lastName;
 
     @NotNull(message = "nationality cannot be null.")
     @NotBlank(message = "nationality cannot be blank.")
@@ -31,6 +32,6 @@ public class UserDto implements Serializable {
 
     @NotBlank(message = "identity number cannot be blank.")
     private String identityNumber;
-
     private IdentityDocument identityDocument;
+    private Role role;
 }
