@@ -25,18 +25,21 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('user:write')")
     public ResponseEntity<UserDto> addUser(@RequestBody @Valid UserDto userDto) {
         UserDto addedUser = userService.addUser(userDto);
         return new ResponseEntity<>(addedUser, HttpStatus.CREATED);
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('user:read')")
     public ResponseEntity<List<GetUserDto>> getAllUsers() {
         List<GetUserDto> allUsers = userService.getAllUsers();
         return new ResponseEntity<>(allUsers, HttpStatus.OK);
     }
 
     @GetMapping("/{num}")
+    @PreAuthorize("hasAuthority('user:read')")
     public ResponseEntity<GetUserDto> getUserByNum(@PathVariable Integer num) {
         GetUserDto member = userService.getUserByNum(num);
         if (member != null) {
@@ -47,7 +50,7 @@ public class UserController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('WRITE_MEMBER')")
+    @PreAuthorize("hasAuthority('user:change_role')")
     public GetUserDto update(@Valid @RequestBody UpdateUserDto updateUserDto) {
         return userService.updateUserRole(updateUserDto);
     }

@@ -43,26 +43,26 @@ public class AuthenticationController {
         authenticationService.refresh(request,response);
     }
 
-//    @GetMapping("/user")
-//    public ResponseEntity<GetUserDto> getAuthenticatedUser (){
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof User user) {
-//
-//            return ResponseEntity.ok(
-//                    GetUserDto.builder()
-//                            .firstName(user.getFirstName())
-//                            .lastName(user.getLastName())
-//                            .email(user.getEmail())
-//                            .role(user.getRole().name())
-//                            .permissions(user.getRole().getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
-//                            .identityNumber(user.getIdentityNumber())
-//                            .nationality(user.getNationality())
-//                            .accessionDate(user.getAccessionDate())
-//                            .build()
-//            );
-//        }
-//
-//        return ResponseEntity.badRequest().build();
-//    }
+    @GetMapping("/user")
+    public ResponseEntity<GetUserDto> getAuthenticatedUser (){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof User user) {
+
+            return ResponseEntity.ok(
+                    GetUserDto.builder()
+                            .firstName(user.getFirstName())
+                            .lastName(user.getLastName())
+                            .email(user.getEmail())
+                            .role(user.getRole().name())
+                            .permissions(user.getRole().getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
+                            .identityNumber(user.getIdentityNumber())
+                            .nationality(user.getNationality())
+                            .accessionDate(user.getAccessionDate())
+                            .build()
+            );
+        }
+
+        return ResponseEntity.badRequest().build();
+    }
 
 }

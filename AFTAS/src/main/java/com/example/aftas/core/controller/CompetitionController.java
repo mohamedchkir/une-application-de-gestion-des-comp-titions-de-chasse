@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -31,6 +32,7 @@ public class CompetitionController {
 
 
     @PostMapping
+    @PreAuthorize("hasAuthority('copetition:write')")
     public ResponseEntity<Object> addCompetition(@Valid @RequestBody CompetitionDto competitionDto) {
         try {
             CompetitionDto createdCompetition = competitionService.addCompetition(competitionDto);
@@ -41,17 +43,20 @@ public class CompetitionController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('competition:read')")
     public ResponseEntity<Page<GetCompetitionDto>> getAllCompetitionsWithStatus(int page, int size) {
         Page<GetCompetitionDto> competitionDto = competitionService.getAllCompetitionsWithStatus(page, size);
         return ResponseEntity.ok(competitionDto);
     }
 
     @GetMapping("/{code}")
+    @PreAuthorize("hasAuthority('competition:read')")
     public GetCompetitionDto getCompetitionByCode(@PathVariable String code) {
         return competitionService.getCompetitionByCode(code);
     }
 
     @GetMapping("/{code}/calculate-score")
+    @PreAuthorize("hasAuthority('competition:read')")
     public ResponseEntity<List<GetRankingDto>> calculateScore(@PathVariable String code) {
         List<GetRankingDto> calculatedScores = competitionService.calculateScore(code);
         return new ResponseEntity<>(calculatedScores, HttpStatus.OK);

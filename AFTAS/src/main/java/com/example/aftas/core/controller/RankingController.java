@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -22,6 +23,7 @@ public class RankingController {
     private final RankingService rankingService;
 
     @PostMapping("/register")
+    @PreAuthorize("hasAuthority('ranking:write')")
     public ResponseEntity<RankingDto> registerMemberInCompetition(@RequestBody @Valid RankingDto rankingDto) {
         try {
             RankingDto registeredRanking = rankingService.RegisterMemberInCompetition(rankingDto);
@@ -31,6 +33,7 @@ public class RankingController {
             }
         }
     @GetMapping
+    @PreAuthorize("hasAuthority('ranking:read')")
     public ResponseEntity<List<GetRankingDto>> getAllRankings() {
         List<GetRankingDto> rankings = rankingService.getAllRankings();
         return new ResponseEntity<>(rankings, HttpStatus.OK);

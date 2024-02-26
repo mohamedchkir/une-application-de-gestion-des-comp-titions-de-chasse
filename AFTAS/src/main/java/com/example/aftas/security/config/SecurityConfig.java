@@ -40,7 +40,7 @@ public class SecurityConfig {
                         .requestMatchers(DELETE, "/api/v1/competitions/**").hasAnyAuthority(COMPETITION_MANAGE.name())
                         .requestMatchers(PUT, "/api/v1/competitions/**").hasAnyAuthority(COMPETITION_MANAGE.name())
                         .anyRequest()
-                        .permitAll())
+                        .authenticated())
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)

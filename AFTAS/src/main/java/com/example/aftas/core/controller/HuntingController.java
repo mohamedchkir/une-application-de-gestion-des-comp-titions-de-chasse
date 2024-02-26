@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,10 +22,12 @@ import java.util.List;
 public class HuntingController {
     public final HuntingService huntingService;
     @PostMapping
+    @PreAuthorize("hasAuthority('hunting:write')")
     public GetHuntingDto addHunting(@RequestBody @Valid HuntingDto huntingDto) {
         return huntingService.addHunting(huntingDto);
     }
     @GetMapping("/{code}")
+    @PreAuthorize("hasAuthority('hunting:read')")
     public ResponseEntity<List<GetHuntingDto>> getHuntingByCompetition(@PathVariable String code) {
         try {
             List<GetHuntingDto> hunting = huntingService.findByCompetition(code);

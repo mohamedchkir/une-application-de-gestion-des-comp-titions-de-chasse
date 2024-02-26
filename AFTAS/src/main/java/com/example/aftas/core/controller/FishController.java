@@ -26,6 +26,7 @@ public class FishController {
     public final FishService fishService;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('fish:write')")
     public ResponseEntity<GetFishDto> addFish(@RequestBody @Valid FishDto fishDto) {
         try {
             GetFishDto createdFish = fishService.addFish(fishDto);
@@ -36,12 +37,14 @@ public class FishController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('fish:read')")
     public ResponseEntity<List<GetFishDto>> getAllFish() {
         List<GetFishDto> allFish = fishService.getAllFish();
         return new ResponseEntity<>(allFish, HttpStatus.OK);
     }
 
     @GetMapping("/{name}")
+    @PreAuthorize("hasAuthority('fish:read')")
     public ResponseEntity<GetFishDto> getFishByName(@PathVariable String name) {
         try {
             GetFishDto fish = fishService.getFishByName(name);
