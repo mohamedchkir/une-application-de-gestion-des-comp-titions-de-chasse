@@ -32,7 +32,7 @@ public class CompetitionController {
 
 
     @PostMapping
-    @PreAuthorize("hasAuthority('copetition:write')")
+    @PreAuthorize("hasAuthority('competition:manage')")
     public ResponseEntity<Object> addCompetition(@Valid @RequestBody CompetitionDto competitionDto) {
         try {
             CompetitionDto createdCompetition = competitionService.addCompetition(competitionDto);

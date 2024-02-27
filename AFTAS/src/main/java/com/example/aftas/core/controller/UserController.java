@@ -3,8 +3,11 @@ package com.example.aftas.core.controller;
 
 import com.example.aftas.core.dao.model.dto.Get.GetUserDto;
 import com.example.aftas.core.dao.model.dto.Store.UserDto;
+import com.example.aftas.core.dao.model.dto.request.RegisterRequest;
+import com.example.aftas.core.dao.model.dto.response.AuthenticationResponse;
 import com.example.aftas.core.dao.model.dto.update.UpdateUserDto;
 import com.example.aftas.core.service.UserService;
+import com.example.aftas.core.service.auth.AuthenticationService;
 import com.example.aftas.shared.Const.AppEndpoints;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -23,11 +26,13 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final AuthenticationService authenticationService;
+
 
     @PostMapping
     @PreAuthorize("hasAuthority('user:write')")
-    public ResponseEntity<UserDto> addUser(@RequestBody @Valid UserDto userDto) {
-        UserDto addedUser = userService.addUser(userDto);
+    public ResponseEntity<AuthenticationResponse> addUser(@RequestBody @Valid RegisterRequest userDto) {
+        AuthenticationResponse addedUser = authenticationService.register(userDto);
         return new ResponseEntity<>(addedUser, HttpStatus.CREATED);
     }
 

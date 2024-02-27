@@ -8,6 +8,7 @@ import com.example.aftas.core.dao.model.entity.User;
 import com.example.aftas.core.dao.repository.TokenRepository;
 import com.example.aftas.core.dao.repository.UserRepository;
 import com.example.aftas.security.config.JwtService;
+import com.example.aftas.shared.Enum.Role;
 import com.example.aftas.shared.Enum.TokenType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,9 +21,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -35,13 +38,15 @@ public class AuthenticationService {
 
 
     public AuthenticationResponse register(RegisterRequest request) {
+        Random random = new Random();
         var user = User.builder()
-                .num(request.getNum())
+                .num(random.nextInt(1000))
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(request.getRole())
+                .role(Role.ADHERENT)
+                .accessionDate(LocalDate.now())
                 .identityNumber(request.getIdentityNumber())
                 .nationality(request.getNationality())
                 .identityDocument(request.getIdentityDocument())
