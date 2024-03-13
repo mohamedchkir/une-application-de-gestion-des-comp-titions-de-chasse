@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="423186ef-19c0-4936-9c2b-ff528b12e0e0" name="Changes" comment="" />
+    <list default="true" id="423186ef-19c0-4936-9c2b-ff528b12e0e0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,9 +16,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/AFTAS/src/main/java/com/example/aftas/AftasApplication.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
   <component name="ProjectId" id="2ZR082VSdHL7I3eRspjAoxhP8JK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -26,7 +35,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/hp/IdeaProjects/une-application-de-gestion-des-comp-titions-de-chasse",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/hp/Documents/Projet Github/une-application-de-gestion-des-comp-titions-de-chasse",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -35,6 +45,14 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-3183f394aec4-cf227e86" />
+        <option value="jdk-17.0.9-corretto-17.0.9-3183f394aec4-8f899f12" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -44,6 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702369422599</updated>
       <workItem from="1702369424488" duration="304000" />
+      <workItem from="1708423049401" duration="1274000" />
     </task>
     <servers />
   </component>
